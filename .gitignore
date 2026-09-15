@@ -10,6 +10,5 @@ firmware/channel_tag_idf/sdkconfig
 firmware/channel_tag_idf/sdkconfig.old
 
 # Walkthrough, learning, and educational materials
-/README.md
 /docs/
 /sample/
