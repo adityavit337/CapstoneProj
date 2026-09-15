@@ -1,4 +1,5 @@
 import json
+import math
 import socket
 import time
 import unittest
@@ -46,3 +47,34 @@ class ServerTests(unittest.TestCase):
         with self.assertRaises(urllib.error.HTTPError) as e:post({'x':1,'y':1},'https://example.com')
         self.assertEqual(e.exception.code,403)
         e.exception.close()
+
+    def test_three_network_anchors_produce_live_position(self):
+        truth = (2.5, 2.0)
+        # Each socket represents a separate WROOM anchor running anchor_network.
+        for name, anchor in self.app.cfg['anchors'].items():
+            with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+                s.settimeout(2)
+                distance = math.dist(truth, (anchor['x'], anchor['y']))
+                rssi = round(-59 - 22 * math.log10(distance))
+                for seq in range(4):
+                    s.sendto(wire(anchor=name, seq=seq, rssi=rssi, channel=0, channel_mask=7), self.app.udp.server_address)
+                heartbeat = {'v': 1, 'type': 'heartbeat', 'simulated': False,
+                             'anchor': name, 'anchor_boot': 1, 'uptime_ms': 333, 'queue_drops': 0}
+                s.sendto(json.dumps(heartbeat).encode(), self.app.udp.server_address)
+                reply, _ = s.recvfrom(1024)
+                self.assertTrue(reply.startswith(b'SYNC1 333 '))
+        deadline = time.monotonic() + 2
+        while time.monotonic() < deadline:
+            with self.app.lock:
+                self.app.engine.estimate()
+            with urllib.request.urlopen(self.url + '/api/state') as r:
+                state = json.load(r)
+            if state['stats']['accepted'] == 12:
+                break
+            time.sleep(.01)
+        self.assertEqual(state['stats']['accepted'], 12)
+        self.assertEqual(state['stats']['rejected'], 0)
+        self.assertTrue(all(state['anchors'][name]['online'] for name in ('A', 'B', 'C')))
+        position = state['baseline']
+        self.assertIsNotNone(position)
+        self.assertLess(math.dist((position['x'], position['y']), truth), .4)

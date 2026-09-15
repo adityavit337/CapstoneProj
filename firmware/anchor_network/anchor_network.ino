@@ -1,4 +1,7 @@
 #include <IndoorBLE.h>
+#if !defined(CONFIG_IDF_TARGET_ESP32) || !defined(CONFIG_BT_BLUEDROID_ENABLED)
+#error "Anchors A/B/C require ESP32-WROOM: select ESP32 Dev Module with Huge APP partition."
+#endif
 #include <WiFi.h>
 #include <WiFiUdp.h>
 #include <RoomConfig.h>
