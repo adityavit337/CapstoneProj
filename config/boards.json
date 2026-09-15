@@ -1,0 +1,8 @@
+{
+  "arduino_core": "esp32:esp32@3.3.7",
+  "board_manager_url": "https://espressif.github.io/arduino-esp32/package_esp32_index.json",
+  "tag": {"model": "Seeed Studio XIAO ESP32-S3", "fqbn": "esp32:esp32:XIAO_ESP32S3:USBMode=hwcdc,CDCOnBoot=default", "identity": "corrected by user; there is no ESP32-C6 tag"},
+  "A": {"model": "Seeed Studio XIAO ESP32-S3", "fqbn": "esp32:esp32:XIAO_ESP32S3:USBMode=hwcdc,CDCOnBoot=default", "identity": "confirmed by user in this session"},
+  "B": {"model": "ESP32 DevKit V1", "fqbn": "esp32:esp32:esp32:PartitionScheme=huge_app", "identity": "user identified; ESP32 Dev Module is the tested compatible target because the DOIT target has a fixed 1.25 MB application partition"},
+  "C": {"model": "ESP32-WROOM development board", "fqbn": "esp32:esp32:esp32:PartitionScheme=huge_app", "identity": "user identified; generic ESP32 Dev Module target; carrier vendor unspecified; confirm at least 4 MB flash before upload"}
+}

@@ -1,0 +1,15 @@
+{
+  "instructions": "Copy these keys into room.json calibration only AFTER replacing every null with measured dB offsets. This template is intentionally not valid for enabling transfer.",
+  "reference_tx_offsets_db": {
+    "A": {"37": null, "38": null, "39": null},
+    "B": {"37": null, "38": null, "39": null},
+    "C": {"37": null, "38": null, "39": null}
+  },
+  "tag_transfer_offsets_db": {
+    "A": {"37": null, "38": null, "39": null},
+    "B": {"37": null, "38": null, "39": null},
+    "C": {"37": null, "38": null, "39": null}
+  },
+  "transfer_offsets_measured": false,
+  "apply_to_tag": false
+}

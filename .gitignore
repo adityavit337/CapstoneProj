@@ -1,0 +1,15 @@
+.tools/
+.venv/
+__pycache__/
+*.pyc
+logs/
+build/
+firmware/libraries/IndoorBLE/src/NetworkConfig.h
+config/local.json
+firmware/channel_tag_idf/sdkconfig
+firmware/channel_tag_idf/sdkconfig.old
+
+# Walkthrough, learning, and educational materials
+/README.md
+/docs/
+/sample/
