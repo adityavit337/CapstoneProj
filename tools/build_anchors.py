@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--anchor", choices=("A", "B", "C"), help="Build one anchor; default builds all three")
+    parser.add_argument("--fqbn", help="Override the board target for all anchors (e.g. esp32:esp32:esp32cam)")
     parser.add_argument("--cli", help="Path to arduino-cli")
     parser.add_argument("--cli-config", help="Path to arduino-cli.yaml")
     parser.add_argument("--config", default=str(ROOT / "config/room.json"), help="Room configuration used to generate firmware constants")
@@ -35,15 +36,16 @@ def main():
         command = [cli]
         if cli_config:
             command += ["--config-file", cli_config]
+        fqbn = args.fqbn or boards[name]["fqbn"]
         command += [
-            "compile", "--fqbn", boards[name]["fqbn"],
+            "compile", "--fqbn", fqbn,
             "--libraries", str(ROOT / "firmware/libraries"),
             "--build-property", f"compiler.cpp.extra_flags=-DANCHOR_INDEX={index}",
             "--build-path", str(ROOT / "build" / f"compile_anchor_{name}"),
             "--output-dir", str(output),
             str(ROOT / "firmware/anchor_network"),
         ]
-        print(f"Building anchor {name} (index {index}): {boards[name]['fqbn']}", flush=True)
+        print(f"Building anchor {name} (index {index}): {fqbn}", flush=True)
         subprocess.run(command, check=True)
         print(f"Anchor {name} firmware: {output}", flush=True)
 

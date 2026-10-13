@@ -1,7 +1,7 @@
 #include <IndoorBLE.h>
 #include "TagConfig.h"
 #if !defined(ARDUINO_ARCH_ESP32) || !defined(CONFIG_BT_BLUEDROID_ENABLED)
-#error "Two-board review tag: select ESP32 Dev Module on an ESP32-WROOM board."
+#error "This tag needs a classic ESP32 target with Bluedroid BLE (for example ESP32 Dev Module or AI Thinker ESP32-CAM)."
 #endif
 uint32_t sequence=0;
 void setup() { IndoorBLE::begin(); }

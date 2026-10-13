@@ -4,5 +4,6 @@
   "tag": {"model": "Seeed Studio XIAO ESP32-S3", "fqbn": "esp32:esp32:XIAO_ESP32S3:USBMode=hwcdc,CDCOnBoot=default", "identity": "corrected by user; there is no ESP32-C6 tag"},
   "A": {"model": "ESP32-WROOM development board", "fqbn": "esp32:esp32:esp32:PartitionScheme=huge_app", "identity": "user confirmed all three anchors are ESP32-WROOM; generic ESP32 Dev Module target; confirm at least 4 MB flash before upload"},
   "B": {"model": "ESP32-WROOM development board", "fqbn": "esp32:esp32:esp32:PartitionScheme=huge_app", "identity": "user confirmed all three anchors are ESP32-WROOM; generic ESP32 Dev Module target; confirm at least 4 MB flash before upload"},
-  "C": {"model": "ESP32-WROOM development board", "fqbn": "esp32:esp32:esp32:PartitionScheme=huge_app", "identity": "user identified; generic ESP32 Dev Module target; carrier vendor unspecified; confirm at least 4 MB flash before upload"}
+  "C": {"model": "ESP32-WROOM development board", "fqbn": "esp32:esp32:esp32:PartitionScheme=huge_app", "identity": "user identified; generic ESP32 Dev Module target; carrier vendor unspecified; confirm at least 4 MB flash before upload"},
+  "esp32_cam_alternate": {"model": "AI Thinker ESP32-CAM / compatible classic ESP32 camera board", "fqbn": "esp32:esp32:esp32cam", "identity": "alternate target for classic ESP32 BLE sketches; camera and SD are unused; requires 4 MB flash; build anchors with --fqbn"}
 }

@@ -1,4 +1,4 @@
-// ESP32-WROOM two-board review receiver. Pair with tag_minimal (ID 100, all channels).
+// Classic ESP32 two-board review receiver. Pair with tag_minimal (ID 100, all channels).
 // Uses the bundled Arduino BLE Scan API. No IndoorBLE library or Wi-Fi needed.
 // Keep anchor_network and tag_channels for the future multi-anchor experiment.
 #include <BLEDevice.h>

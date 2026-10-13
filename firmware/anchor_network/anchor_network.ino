@@ -1,6 +1,6 @@
 #include <IndoorBLE.h>
 #if !defined(CONFIG_IDF_TARGET_ESP32) || !defined(CONFIG_BT_BLUEDROID_ENABLED)
-#error "Anchors A/B/C require ESP32-WROOM: select ESP32 Dev Module with Huge APP partition."
+#error "Anchors require a classic ESP32 target with Bluedroid BLE (for example ESP32 Dev Module or AI Thinker ESP32-CAM)."
 #endif
 #include <WiFi.h>
 #include <WiFiUdp.h>

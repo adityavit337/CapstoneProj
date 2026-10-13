@@ -33,7 +33,7 @@ See [the protocol reference](docs/PROTOCOL.md) for the wire format, freshness an
 | Laptop | Windows 11 recommended; Python 3.11+ |
 | Network | Anchors and laptop on the same ordinary, trusted 2.4 GHz LAN |
 
-The authoritative board targets are in [config/boards.json](config/boards.json). Python runtime and tests use only the standard library; `requirements.txt` records that expectation. Keep antennas clear of metal, use USB data cables for flashing, and keep antenna height/orientation consistent.
+The authoritative board targets are in [config/boards.json](config/boards.json). The classic ESP32 sketches also support ESP32-CAM boards (including the style shown in the photo) when the camera and microSD slot are unused. Select **AI Thinker ESP32-CAM** in Arduino IDE, or pass `--fqbn esp32:esp32:esp32cam` to the anchor build helper. ESP32-S2 is not BLE-compatible with these sketches. Python runtime and tests use only the standard library; `requirements.txt` records that expectation. Keep antennas clear of metal, use USB data cables for flashing, and keep antenna height/orientation consistent.
 
 ## Quick start: simulated dashboard
 
@@ -97,9 +97,9 @@ It regenerates room constants and outputs separate images at `build/anchor_A`, `
 ### 4. Flash tag and anchors
 
 - Flash `firmware/tag_minimal` to the moving tag for baseline positioning.
-- Flash each matching network image to its labelled WROOM anchor.
+- Flash each matching network image to its labelled anchor. For ESP32-CAM boards, build with `python tools/build_anchors.py --anchor A --fqbn esp32:esp32:esp32cam` (replace A with that board's label). Compile `tag_minimal` with **AI Thinker ESP32-CAM** for a CAM tag.
 - In Arduino IDE, set `ANCHOR_INDEX` in `firmware/anchor_network/AnchorConfig.h` to 0 (A), 1 (B), or 2 (C) before each build/upload.
-- Use the FQBN listed in [config/boards.json](config/boards.json). WROOM anchors need at least 4 MB flash and the Huge APP partition.
+- Use the FQBN listed in [config/boards.json](config/boards.json). All boards need at least 4 MB flash. ESP32-CAM carrier boards commonly require a USB-to-serial adapter and GPIO0 connected to GND during upload; follow the board's pin labels.
 
 A representative CLI flow is:
 

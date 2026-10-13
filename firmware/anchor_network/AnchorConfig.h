@@ -1,5 +1,5 @@
 #pragma once
-// All three anchors: ESP32-WROOM / ESP32 Dev Module, Huge APP partition.
+// Classic ESP32 anchors: ESP32 Dev Module or ESP32-CAM, Huge APP partition.
 // A=0, B=1, C=2. Set a different index before uploading to each board.
 // tools/build_anchors.py builds all three IDs using config/boards.json.
 // CLI builds may override with -DANCHOR_INDEX=1. Coordinates live in room.json.
